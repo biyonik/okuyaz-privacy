@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OkuYaz - Veri Silme Talebi</title>
+    <meta name="description" content="OkuYaz uygulaması veri silme talimatları">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F97316;
+            --primary-dark: #EA580C;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --bg: #FFFBF5;
+            --card-bg: #FFFFFF;
+            --border: #FED7AA;
+            --success: #10B981;
+            --success-bg: #D1FAE5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        h2 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h3 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .success-box {
+            background: var(--success-bg);
+            border-left: 4px solid var(--success);
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+        
+        .success-box p {
+            margin: 0;
+            color: #065F46;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table th {
+            background: #FFF7ED;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .badge-local {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+        
+        .badge-cloud {
+            background: #E0E7FF;
+            color: #3730A3;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .lang-switch {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .lang-switch a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .lang-switch a:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+        }
+        
+        .header-wrapper {
+            position: relative;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .data-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-wrapper">
+        <header class="header">
+            <div class="lang-switch">
+                <a href="delete-data-en.html">🇬🇧 English</a>
+            </div>
+            <div class="logo">🦉</div>
+            <h1>OkuYaz - Veri Silme Talebi</h1>
+            <p>Verilerinizi nasıl silebileceğinizi öğrenin</p>
+        </header>
+    </div>
+    
+    <main class="container">
+        <!-- Özet -->
+        <section class="card">
+            <h2>📋 Özet</h2>
+            <div class="success-box">
+                <p>✅ OkuYaz'da tüm kullanıcı verileri <strong>cihazınızda</strong> saklanır. 
+                Uygulamayı sildiğinizde tüm verileriniz otomatik olarak silinir.</p>
+            </div>
+            <p>
+                OkuYaz, çocuklarınızın gizliliğini korumak için tasarlanmıştır. 
+                Sunucularımızda kişisel veri saklamıyoruz.
+            </p>
+        </section>
+        
+        <!-- Saklanan Veriler -->
+        <section class="card">
+            <h2>💾 Saklanan Veri Türleri</h2>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Veri Türü</th>
+                        <th>Nerede Saklanır</th>
+                        <th>Nasıl Silinir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Öğrenme ilerlemesi (harfler, kelimeler)</td>
+                        <td><span class="badge badge-local">📱 Cihaz</span></td>
+                        <td>Uygulama silinince otomatik</td>
+                    </tr>
+                    <tr>
+                        <td>Oyun skorları ve yıldızlar</td>
+                        <td><span class="badge badge-local">📱 Cihaz</span></td>
+                        <td>Uygulama silinince otomatik</td>
+                    </tr>
+                    <tr>
+                        <td>Kazanılan başarı rozetleri</td>
+                        <td><span class="badge badge-local">📱 Cihaz</span></td>
+                        <td>Uygulama silinince otomatik</td>
+                    </tr>
+                    <tr>
+                        <td>Uygulama ayarları</td>
+                        <td><span class="badge badge-local">📱 Cihaz</span></td>
+                        <td>Uygulama silinince otomatik</td>
+                    </tr>
+                    <tr>
+                        <td>Satın alma durumu</td>
+                        <td><span class="badge badge-local">📱 Cihaz</span> + <span class="badge badge-cloud">☁️ Google Play</span></td>
+                        <td>Google Play hesabınızda kalır</td>
+                    </tr>
+                    <tr>
+                        <td>Bulut yedekleme (opsiyonel)</td>
+                        <td><span class="badge badge-cloud">☁️ Google Play Games</span></td>
+                        <td>Manuel silme gerekli</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Yerel Verileri Silme -->
+        <section class="card">
+            <h2>📱 Yerel Verileri Silme</h2>
+            <p>Cihazınızda saklanan tüm OkuYaz verilerini silmek için:</p>
+            
+            <h3><span class="step-number">1</span> Android Cihazlarda</h3>
+            <ol>
+                <li><strong>Ayarlar</strong> uygulamasını açın</li>
+                <li><strong>Uygulamalar</strong> veya <strong>Uygulama Yönetimi</strong>'ne gidin</li>
+                <li><strong>OkuYaz</strong> uygulamasını bulun ve dokunun</li>
+                <li><strong>Depolama</strong>'ya dokunun</li>
+                <li><strong>Verileri temizle</strong> veya <strong>Tüm verileri sil</strong>'e dokunun</li>
+                <li>Onaylayın</li>
+            </ol>
+            
+            <p><strong>Veya:</strong> Uygulamayı tamamen kaldırın:</p>
+            <ol>
+                <li>OkuYaz simgesine uzun basın</li>
+                <li><strong>Kaldır</strong> veya <strong>Sil</strong>'i seçin</li>
+                <li>Onaylayın</li>
+            </ol>
+            
+            <div class="highlight-box">
+                <p>💡 Uygulamayı kaldırdığınızda tüm yerel veriler kalıcı olarak silinir.</p>
+            </div>
+        </section>
+        
+        <!-- Bulut Verilerini Silme -->
+        <section class="card">
+            <h2>☁️ Bulut Verilerini Silme (Opsiyonel)</h2>
+            <p>
+                Eğer Google Play Games ile bulut yedekleme özelliğini etkinleştirdiyseniz, 
+                bu verileri ayrıca silmeniz gerekir:
+            </p>
+            
+            <h3><span class="step-number">1</span> Google Play Games Verilerini Silme</h3>
+            <ol>
+                <li><strong>Google Play Games</strong> uygulamasını açın</li>
+                <li>Sağ üstteki <strong>profil simgenize</strong> dokunun</li>
+                <li><strong>Ayarlar</strong>'a gidin</li>
+                <li><strong>Play Games hesabınızı ve verilerinizi silin</strong>'i seçin</li>
+                <li><strong>OkuYaz</strong> için verileri silin</li>
+            </ol>
+            
+            <h3><span class="step-number">2</span> Alternatif Yöntem</h3>
+            <ol>
+                <li><a href="https://myaccount.google.com/data-and-privacy" target="_blank">Google Hesap Ayarları</a>'na gidin</li>
+                <li><strong>Veri ve gizlilik</strong> bölümüne gidin</li>
+                <li><strong>Kullandığınız uygulamalar ve hizmetlerden elde edilen veriler</strong>'i seçin</li>
+                <li>OkuYaz verilerini bulun ve silin</li>
+            </ol>
+        </section>
+        
+        <!-- Satın Alma Verileri -->
+        <section class="card">
+            <h2>💳 Satın Alma Verileri</h2>
+            <p>
+                Google Play üzerinden yapılan satın alma işlemleri, Google hesabınızda saklanır. 
+                Bu veriler:
+            </p>
+            <ul>
+                <li>Satın alma geçmişinizde kalır (iade veya iptal edilmedikçe)</li>
+                <li>Uygulamayı yeniden yüklerseniz premium durumunuzu geri yükler</li>
+                <li>OkuYaz tarafından erişilemez veya değiştirilemez</li>
+            </ul>
+            <p>
+                Satın alma verilerinizi silmek için 
+                <a href="https://support.google.com/googleplay/answer/2479637" target="_blank">Google Play Destek</a> 
+                ile iletişime geçin.
+            </p>
+        </section>
+        
+        <!-- Ek Saklama Süreleri -->
+        <section class="card">
+            <h2>⏱️ Veri Saklama Süreleri</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Veri Türü</th>
+                        <th>Saklama Süresi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Yerel cihaz verileri</td>
+                        <td>Uygulama silinene kadar</td>
+                    </tr>
+                    <tr>
+                        <td>Google Play Games bulut verileri</td>
+                        <td>Manuel silinene kadar</td>
+                    </tr>
+                    <tr>
+                        <td>Satın alma kayıtları</td>
+                        <td>Google politikalarına göre</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <strong>Not:</strong> OkuYaz sunucularında kullanıcı verisi saklanmaz. 
+                Tüm veriler ya cihazınızda ya da Google hizmetlerinde bulunur.
+            </p>
+        </section>
+        
+        <!-- İletişim -->
+        <section class="card">
+            <h2>📧 İletişim</h2>
+            <p>
+                Veri silme konusunda yardıma ihtiyacınız varsa veya sorularınız varsa 
+                bizimle iletişime geçin:
+            </p>
+            <ul>
+                <li><strong>E-posta:</strong> ahmet.altun60@gmail.com</li>
+            </ul>
+            <p>
+                Talebinizi en kısa sürede işleme alacağız.
+            </p>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2026 OkuYaz. Tüm hakları saklıdır.</p>
+        <p>
+            <a href="index.html">Gizlilik Politikası</a> · 
+            <a href="delete-data-en.html">English</a> · 
+            <a href="mailto:ahmet.altun60@gmail.com">İletişim</a>
+        </p>
+    </footer>
+</body>
+</html>

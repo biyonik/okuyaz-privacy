@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OkuYaz - Data Deletion Request</title>
+    <meta name="description" content="OkuYaz app data deletion instructions">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F97316;
+            --primary-dark: #EA580C;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --bg: #FFFBF5;
+            --card-bg: #FFFFFF;
+            --border: #FED7AA;
+            --success: #10B981;
+            --success-bg: #D1FAE5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        h2 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h3 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .success-box {
+            background: var(--success-bg);
+            border-left: 4px solid var(--success);
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+        
+        .success-box p {
+            margin: 0;
+            color: #065F46;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table th {
+            background: #FFF7ED;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .badge-local {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+        
+        .badge-cloud {
+            background: #E0E7FF;
+            color: #3730A3;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .lang-switch {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .lang-switch a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .lang-switch a:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+        }
+        
+        .header-wrapper {
+            position: relative;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .data-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-wrapper">
+        <header class="header">
+            <div class="lang-switch">
+                <a href="delete-data.html">🇹🇷 Türkçe</a>
+            </div>
+            <div class="logo">🦉</div>
+            <h1>OkuYaz - Data Deletion Request</h1>
+            <p>Learn how to delete your data</p>
+        </header>
+    </div>
+    
+    <main class="container">
+        <!-- Summary -->
+        <section class="card">
+            <h2>📋 Summary</h2>
+            <div class="success-box">
+                <p>✅ All user data in OkuYaz is stored <strong>on your device</strong>. 
+                When you uninstall the app, all your data is automatically deleted.</p>
+            </div>
+            <p>
+                OkuYaz is designed to protect your children's privacy. 
+                We do not store personal data on our servers.
+            </p>
+        </section>
+        
+        <!-- Data Types -->
+        <section class="card">
+            <h2>💾 Types of Data Stored</h2>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Where Stored</th>
+                        <th>How to Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Learning progress (letters, words)</td>
+                        <td><span class="badge badge-local">📱 Device</span></td>
+                        <td>Automatic when app uninstalled</td>
+                    </tr>
+                    <tr>
+                        <td>Game scores and stars</td>
+                        <td><span class="badge badge-local">📱 Device</span></td>
+                        <td>Automatic when app uninstalled</td>
+                    </tr>
+                    <tr>
+                        <td>Achievement badges earned</td>
+                        <td><span class="badge badge-local">📱 Device</span></td>
+                        <td>Automatic when app uninstalled</td>
+                    </tr>
+                    <tr>
+                        <td>App settings</td>
+                        <td><span class="badge badge-local">📱 Device</span></td>
+                        <td>Automatic when app uninstalled</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase status</td>
+                        <td><span class="badge badge-local">📱 Device</span> + <span class="badge badge-cloud">☁️ Google Play</span></td>
+                        <td>Remains in Google Play account</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud backup (optional)</td>
+                        <td><span class="badge badge-cloud">☁️ Google Play Games</span></td>
+                        <td>Manual deletion required</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Delete Local Data -->
+        <section class="card">
+            <h2>📱 Deleting Local Data</h2>
+            <p>To delete all OkuYaz data stored on your device:</p>
+            
+            <h3><span class="step-number">1</span> On Android Devices</h3>
+            <ol>
+                <li>Open the <strong>Settings</strong> app</li>
+                <li>Go to <strong>Apps</strong> or <strong>App Management</strong></li>
+                <li>Find and tap <strong>OkuYaz</strong></li>
+                <li>Tap <strong>Storage</strong></li>
+                <li>Tap <strong>Clear data</strong> or <strong>Delete all data</strong></li>
+                <li>Confirm</li>
+            </ol>
+            
+            <p><strong>Or:</strong> Completely uninstall the app:</p>
+            <ol>
+                <li>Long press on the OkuYaz icon</li>
+                <li>Select <strong>Uninstall</strong> or <strong>Remove</strong></li>
+                <li>Confirm</li>
+            </ol>
+            
+            <div class="highlight-box">
+                <p>💡 When you uninstall the app, all local data is permanently deleted.</p>
+            </div>
+        </section>
+        
+        <!-- Delete Cloud Data -->
+        <section class="card">
+            <h2>☁️ Deleting Cloud Data (Optional)</h2>
+            <p>
+                If you enabled cloud backup with Google Play Games, 
+                you need to delete this data separately:
+            </p>
+            
+            <h3><span class="step-number">1</span> Delete Google Play Games Data</h3>
+            <ol>
+                <li>Open the <strong>Google Play Games</strong> app</li>
+                <li>Tap your <strong>profile icon</strong> in the top right</li>
+                <li>Go to <strong>Settings</strong></li>
+                <li>Select <strong>Delete Play Games account and data</strong></li>
+                <li>Delete data for <strong>OkuYaz</strong></li>
+            </ol>
+            
+            <h3><span class="step-number">2</span> Alternative Method</h3>
+            <ol>
+                <li>Go to <a href="https://myaccount.google.com/data-and-privacy" target="_blank">Google Account Settings</a></li>
+                <li>Navigate to <strong>Data and privacy</strong></li>
+                <li>Select <strong>Data from apps and services you use</strong></li>
+                <li>Find and delete OkuYaz data</li>
+            </ol>
+        </section>
+        
+        <!-- Purchase Data -->
+        <section class="card">
+            <h2>💳 Purchase Data</h2>
+            <p>
+                Purchases made through Google Play are stored in your Google account. 
+                This data:
+            </p>
+            <ul>
+                <li>Remains in your purchase history (unless refunded or canceled)</li>
+                <li>Restores your premium status if you reinstall the app</li>
+                <li>Cannot be accessed or modified by OkuYaz</li>
+            </ul>
+            <p>
+                To delete your purchase data, contact 
+                <a href="https://support.google.com/googleplay/answer/2479637" target="_blank">Google Play Support</a>.
+            </p>
+        </section>
+        
+        <!-- Retention Periods -->
+        <section class="card">
+            <h2>⏱️ Data Retention Periods</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Retention Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Local device data</td>
+                        <td>Until app is uninstalled</td>
+                    </tr>
+                    <tr>
+                        <td>Google Play Games cloud data</td>
+                        <td>Until manually deleted</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase records</td>
+                        <td>Per Google policies</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <strong>Note:</strong> OkuYaz does not store user data on our servers. 
+                All data is either on your device or in Google services.
+            </p>
+        </section>
+        
+        <!-- Contact -->
+        <section class="card">
+            <h2>📧 Contact Us</h2>
+            <p>
+                If you need help with data deletion or have questions, 
+                please contact us:
+            </p>
+            <ul>
+                <li><strong>Email:</strong> ahmet.altun60@gmail.com</li>
+            </ul>
+            <p>
+                We will process your request as quickly as possible.
+            </p>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2026 OkuYaz. All rights reserved.</p>
+        <p>
+            <a href="privacy-policy-en.html">Privacy Policy</a> · 
+            <a href="delete-data.html">Türkçe</a> · 
+            <a href="mailto:ahmet.altun60@gmail.com">Contact</a>
+        </p>
+    </footer>
+</body>
+</html>
